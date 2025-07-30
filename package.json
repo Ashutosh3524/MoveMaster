@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ui": "npm run dev --prefix ui",
-    "server": "nodemon server/app.js",
+    "server": "nodemon server/index.js",
     "both": "concurrently -n SERVER,UI -c green,cyan \"npm run server\" \"npm run ui\""
   },
   "keywords": [],
@@ -13,10 +13,24 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "concurrency": "^0.1.4",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.5",
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
     "concurrently": "^9.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashutosh3524/MoveMaster.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ashutosh3524/MoveMaster/issues"
+  },
+  "homepage": "https://github.com/Ashutosh3524/MoveMaster#readme"
 }

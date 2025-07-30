@@ -1,13 +1,23 @@
 import { ChevronRight } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { motion } from 'framer-motion'
 const Blog = () => {
 
-    const [blogs, setBlogs] = useState([
-        { id: 1, title: 'Ultimate Moving Checklist for 2025', content: 'Moving can be stressful, but with proper planning...', date: '2025-07-25', author: 'Admin' , img: " ./check.png" },
-        { id: 2, title: 'How to Pack Fragile Items Safely', content: 'Packing fragile items requires special attention...', date: '2025-07-22', author: 'Admin' , img: " ./fragile.png" },
-        { id: 3, title: 'Cost-Effective Moving Tips', content: 'Moving doesn\'t have to break the bank...', date: '2025-07-20', author: 'Admin' , img:" ./money.png" }
-    ]);
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/blogs/published');
+                const data = await response.json();
+                setBlogs(data);
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
     return (
 
         <div className="py-16">
@@ -41,7 +51,7 @@ const Blog = () => {
                                 duration: 1,
 
                             }}
-                            key={blog.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                            key={blog._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                             <div className="h-48 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
                                 <img src={blog.img} alt={blog.title} className="w-full h-48 object-cover rounded-md" />
                             </div>

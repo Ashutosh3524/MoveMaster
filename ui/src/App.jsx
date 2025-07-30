@@ -21,7 +21,8 @@ const App = () => {
     { id: '/services', label: 'Services' },
     { id: '/blog', label: 'Blog' },
     { id: '/reviews', label: 'Reviews' },
-    { id: '/contact', label: 'Contact' }
+    { id: '/contact', label: 'Contact' },
+     {id: '/admin', label: 'Admin'}
   ];
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 

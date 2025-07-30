@@ -1,26 +1,53 @@
 import { motion } from 'framer-motion'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
 
 const Review = () => {
-    const [reviews, setReviews] = useState([
-        { id: 1, name: 'Aryan Tambde', rating: 5, comment: 'Excellent service! Very professional and careful with our belongings.', date: '2025-07-20' },
-        { id: 2, name: 'Ashutosh', rating: 4, comment: 'Great experience overall. Timely delivery and reasonable pricing.', date: '2025-07-18' },
-        { id: 3, name: 'ABC', rating: 5, comment: 'Highly recommended! Made our relocation stress-free.', date: '2025-07-15' }
-    ]);
-    const handleReviewSubmit = (e) => {
-        e.preventDefault();
-        const newReview = {
-            id: reviews.length + 1,
-            name: reviewForm.name,
-            rating: reviewForm.rating,
-            comment: reviewForm.comment,
-            date: new Date().toISOString().split('T')[0]
-        };
-        setReviews([newReview, ...reviews]);
-        setReviewForm({ name: '', rating: 5, comment: '' });
-        alert('Review submitted successfully!');
+    const [reviews, setReviews] = useState([]);
+
+
+    const fetchReviews = async () => {
+        try {
+            const res = await fetch('http://localhost:5000/api/reviews/fetch');
+            const data = await res.json();
+            setReviews(data);
+        } catch (err) {
+            console.error('Failed to fetch reviews:', err);
+        }
     };
+
+    useEffect(() => {
+        fetchReviews()
+    }, []);
+
+    const handleReviewSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch('http://localhost:5000/api/reviews/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: reviewForm.name,
+                    rating: reviewForm.rating,
+                    comment: reviewForm.comment,
+                    date: new Date().toLocaleDateString('en-GB'),
+                }),
+            });
+
+            if (res.ok) {
+                setReviewForm({ name: '', rating: 5, comment: '' });
+                alert('Review submitted successfully!');
+                fetchReviews(); // Refresh the review list
+            } else {
+                alert('Failed to submit review');
+            }
+        } catch (err) {
+            console.error('Error submitting review:', err);
+        }
+    };
+
 
     const renderStars = (rating) => {
         return [...Array(5)].map((_, i) => (
@@ -56,8 +83,8 @@ const Review = () => {
                 </motion.div>
 
                 {/* Add Review Form */}
-                <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
 

@@ -5,7 +5,8 @@ import About from './About';
 import Service from './Service';
 import Blog from './Blog';
 import Review from './Review';
-import Contact from './Contact';
+import Contact from './ContactForm';
+import AdminApp from './AdminApp';
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/reviews" element={<Review />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/admin" element={<AdminApp />} />
     </Routes>
   );
 };
