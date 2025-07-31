@@ -58,7 +58,7 @@ The project uses **MongoDB** as the primary database. It consists of the followi
 | `contactdb`      | Stores all contact form enquiries submitted by users |
 | `blogs`          | Contains blog posts including title, content, and meta info |
 | `reviewdb`       | Stores user reviews with rating, message, and author details |
-| `adminuser`      | Stores admin credentials for login and authentication |
+| `adminusers`      | Stores admin credentials for login and authentication |
 | `settingsdb`     | Contains configurable app settings like banner text, social links, etc. |
 
 ---
