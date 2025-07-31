@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Settings, Loader2, Save } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const SettingsComponent = ({ apiBase, authToken }) => {
   const [settings, setSettings] = useState({
     adminEmail: '',
     emailNotifications: true,
     reviewNotifications: true,
-    maintenanceMode: false,
-    autoRefresh: 5,
+    maintenanceMode: false,    
     siteName: '',
     contactEmail: '',
     businessHours: {
@@ -44,7 +44,7 @@ const SettingsComponent = ({ apiBase, authToken }) => {
       setSettings({ ...settings, ...data });
     } catch (error) {
       console.error('Error loading settings:', error);
-      // Use default settings for demo
+     
     } finally {
       setLoading(false);
     }
@@ -59,13 +59,13 @@ const SettingsComponent = ({ apiBase, authToken }) => {
       });
       
       if (response.ok) {
-        alert('Settings saved successfully!');
+        toast.success('Settings saved successfully!');
       } else {
-        alert('Failed to save settings');
+        toast.error('Failed to save settings');
       }
     } catch (error) {
       console.error('Error saving settings:', error);
-      alert('Settings saved locally (demo mode)');
+     
     } finally {
       setSaving(false);
     }
@@ -115,62 +115,62 @@ const SettingsComponent = ({ apiBase, authToken }) => {
             <h3 className="text-lg font-medium mb-4 text-gray-800">Account Settings</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                   Admin Email
                 </label>
                 <input
                   type="email"
                   value={settings.adminEmail}
                   onChange={(e) => handleInputChange('adminEmail', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 cursor-none py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="admin@example.com"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                   Site Name
                 </label>
                 <input
                   type="text"
                   value={settings.siteName}
                   onChange={(e) => handleInputChange('siteName', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 cursor-none py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your Site Name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                   Contact Email
                 </label>
                 <input
                   type="email"
                   value={settings.contactEmail}
                   onChange={(e) => handleInputChange('contactEmail', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 cursor-none py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="contact@example.com"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block cursor-none text-sm font-medium text-gray-700 mb-2">
                   Notification Preferences
                 </label>
                 <div className="space-y-2">
-                  <label className="flex items-center">
+                  <label className="flex cursor-none items-center">
                     <input 
                       type="checkbox" 
-                      className="mr-2" 
+                      className="mr-2 cursor-none" 
                       checked={settings.emailNotifications}
                       onChange={(e) => handleInputChange('emailNotifications', e.target.checked)}
                     />
                     <span className="text-sm">Email notifications for new enquiries</span>
                   </label>
-                  <label className="flex items-center">
+                  <label className="flex cursor-none items-center">
                     <input 
                       type="checkbox" 
-                      className="mr-2" 
+                      className="mr-2 cursor-none" 
                       checked={settings.reviewNotifications}
                       onChange={(e) => handleInputChange('reviewNotifications', e.target.checked)}
                     />
@@ -186,37 +186,24 @@ const SettingsComponent = ({ apiBase, authToken }) => {
             <h3 className="text-lg font-medium mb-4 text-gray-800">System Settings</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block cursor-none text-sm font-medium text-gray-700 mb-2">
                   Site Status
                 </label>
                 <label className="flex items-center">
                   <input 
                     type="checkbox" 
-                    className="mr-2" 
+                    className="mr-2 cursor-none" 
                     checked={settings.maintenanceMode}
                     onChange={(e) => handleInputChange('maintenanceMode', e.target.checked)}
                   />
-                  <span className="text-sm">Enable maintenance mode</span>
+                  <span className="text-sm cursor-none">Enable maintenance mode</span>
                 </label>
               </div>
               
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Auto-refresh interval (minutes)
-                </label>
-                <input
-                  type="number"
-                  value={settings.autoRefresh}
-                  onChange={(e) => handleInputChange('autoRefresh', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="5"
-                  min="1"
-                  max="60"
-                />
-              </div>
+             
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 cursor-none mb-2">
                   Business Hours
                 </label>
                 <div className="space-y-2">
@@ -227,7 +214,7 @@ const SettingsComponent = ({ apiBase, authToken }) => {
                         type="text"
                         value={hours}
                         onChange={(e) => handleBusinessHoursChange(day, e.target.value)}
-                        className="flex-1 px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="flex-1 px-2  cursor-none py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                   ))}
@@ -241,7 +228,7 @@ const SettingsComponent = ({ apiBase, authToken }) => {
           <button 
             onClick={saveSettings}
             disabled={saving}
-            className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200 disabled:opacity-50 flex items-center"
+            className="bg-blue-600 cursor-none text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200 disabled:opacity-50 flex items-center"
           >
             {saving ? (
               <>

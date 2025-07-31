@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion'
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import EnquiriesComponent from './EnquiriesComponent';
 import ReviewsComponent from './ReviewsComponent';
 import BlogComponent from './BlogComponent';
 import SettingsComponent from './SettingsComponent';
+import { toast } from 'react-toastify';
 
 
 const AdminApp = () => {
@@ -41,21 +42,23 @@ const AdminApp = () => {
 
       const data = await response.json();
 
-      if(response.status == 200){
-        alert(`${data.message}`)
-        setIsSignedIn(true);
+      if (response.status == 200) {
+        toast.success(`${data.message}`)
+        setTimeout(() => {
+          setIsSignedIn(true);
+        }, 1000);
       }
-      else if(response.status == 404){
-        alert(`${data.message}`)
+      else if (response.status == 404) {
+        toast.error(`${data.message}`)
       }
-      else if(response.status == 401){
-        alert(`${data.message}`)
+      else if (response.status == 401) {
+        toast.error(`${data.message}`)
       }
 
     } catch (error) {
       console.error('Login error:', error);
-      alert('Login failed due to a network or server error.');
-       
+      toast.error('Login failed due to a network or server error.');
+
     } finally {
       setLoading(false);
     }
@@ -70,24 +73,35 @@ const AdminApp = () => {
   if (!isSignedIn) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+
+            stiffness: 40,
+            damping: 25,
+            delay: 0.5,
+            duration: 0.8,
+
+          }}
+          className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
           <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Admin Sign In</h2>
           <div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-medium mb-2">
+              <label className="block cursor-none text-gray-700 text-sm font-medium mb-2">
                 Email
               </label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 cursor-none border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your email"
                 disabled={loading}
               />
             </div>
             <div className="mb-6">
-              <label className="block text-gray-700 text-sm font-medium mb-2">
+              <label className="block cursor-none text-gray-700 text-sm font-medium mb-2">
                 Password
               </label>
               <div className="relative">
@@ -95,14 +109,14 @@ const AdminApp = () => {
                   type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+                  className="w-full cursor-none px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
                   placeholder="Enter your password"
                   disabled={loading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute cursor-none inset-y-0 right-0 pr-3 flex items-center"
                   disabled={loading}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -112,13 +126,13 @@ const AdminApp = () => {
             <button
               onClick={handleSignIn}
               disabled={loading}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200 disabled:opacity-50 flex items-center justify-center"
+              className="w-full bg-blue-600 cursor-none text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200 disabled:opacity-50 flex items-center justify-center"
             >
               {loading ? <Loader2 size={20} className="animate-spin mr-2" /> : null}
               {loading ? 'Signing In...' : 'Sign In'}
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   }

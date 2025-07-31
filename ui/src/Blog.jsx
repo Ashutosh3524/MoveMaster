@@ -59,7 +59,7 @@ const Blog = () => {
                                 <div className="text-sm text-gray-500 mb-2">{blog.date} • By {blog.author}</div>
                                 <h3 className="text-xl font-bold mb-3">{blog.title}</h3>
                                 <p className="text-gray-600 mb-4">{blog.content}</p>
-                                <button className="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
+                                <button className="text-blue-600 cursor-none font-semibold hover:text-blue-800 flex items-center">
                                     Read More <ChevronRight className="w-4 h-4 ml-1" />
                                 </button>
                             </div>
@@ -68,7 +68,7 @@ const Blog = () => {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button className="bg-blue-600 cursor-none text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                         Load More Articles
                     </button>
                 </div>

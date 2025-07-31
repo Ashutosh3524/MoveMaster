@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Send, CheckCircle, AlertCircle, Loader2, Phone, Mail, MapPin } from 'lucide-react';
+import { motion } from 'framer-motion'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -146,17 +147,39 @@ const ContactForm = () => {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+
+            stiffness: 40,
+            damping: 25,
+            delay: 0.5,
+            duration: 1,
+
+          }}
+          className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Have a question or want to work together? We'd love to hear from you.
             Send us a message and we'll respond as soon as possible.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Info */}
-          <div className="lg:col-span-1">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+
+              stiffness: 40,
+              damping: 25,
+              delay: 0.5,
+              duration: 1,
+
+            }}
+            className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 h-fit">
               <h3 className="text-xl font-semibold text-gray-900 mb-6">Contact Information</h3>
 
@@ -174,7 +197,7 @@ const ContactForm = () => {
                   <div>
                     <p className="text-sm text-gray-600">Email</p>
                     <p className="text-gray-900">
-                      {settings?.adminEmail || 'Loading...'}
+                      {settings?.contactEmail || 'Loading...'}
                     </p>
                   </div>
                 </div>
@@ -199,10 +222,21 @@ const ContactForm = () => {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+
+              stiffness: 40,
+              damping: 25,
+              delay: 0.5,
+              duration: 0.8,
+
+            }}
+            className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-6">Send us a Message</h3>
 
@@ -224,7 +258,7 @@ const ContactForm = () => {
               <div onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                       Full Name
                     </label>
                     <input
@@ -233,7 +267,7 @@ const ContactForm = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border cursor-none border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Your full name"
                       disabled={status.loading}
                       required
@@ -241,7 +275,7 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="email" className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                       Email Address
                     </label>
                     <input
@@ -250,7 +284,7 @@ const ContactForm = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border cursor-none border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="your.email@example.com"
                       disabled={status.loading}
                       required
@@ -260,7 +294,7 @@ const ContactForm = () => {
 
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="phone" className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                       Phone Number
                     </label>
                     <input
@@ -269,14 +303,14 @@ const ContactForm = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border cursor-none border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="+91 83769XXXXX"
                       disabled={status.loading}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="subject" className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                       Subject
                     </label>
                     <input
@@ -285,7 +319,7 @@ const ContactForm = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border cursor-none border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="How can we help?"
                       disabled={status.loading}
                     />
@@ -293,7 +327,7 @@ const ContactForm = () => {
                 </div>
 
                 <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="message" className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                     Message
                   </label>
                   <textarea
@@ -302,7 +336,7 @@ const ContactForm = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+                    className="w-full px-3 py-2 border cursor-none border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
                     placeholder="Tell us more about your inquiry..."
                     disabled={status.loading}
                     required
@@ -316,7 +350,7 @@ const ContactForm = () => {
                   <button
                     onClick={handleSubmit}
                     disabled={status.loading}
-                    className="flex-1 bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 flex items-center justify-center"
+                    className="flex-1 bg-blue-600 cursor-none text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 flex items-center justify-center"
                   >
                     {status.loading ? (
                       <>
@@ -335,14 +369,14 @@ const ContactForm = () => {
                     type="button"
                     onClick={resetForm}
                     disabled={status.loading}
-                    className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 transition duration-200"
+                    className="px-6 py-2 border cursor-none border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 transition duration-200"
                   >
                     Reset
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

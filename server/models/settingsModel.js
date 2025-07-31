@@ -5,7 +5,6 @@ const settingsSchema = new mongoose.Schema({
   emailNotifications: Boolean,
   reviewNotifications: Boolean,
   maintenanceMode: Boolean,
-  autoRefresh: Number,
   siteName: String,
   contactEmail: String,
   businessHours: {

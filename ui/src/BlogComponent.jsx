@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Loader2, Plus, Edit, Eye, Calendar, User } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const BlogComponent = ({ apiBase, authToken }) => {
   const [blogs, setBlogs] = useState([]);
@@ -37,7 +38,6 @@ const BlogComponent = ({ apiBase, authToken }) => {
       setBlogs(data);
     } catch (error) {
       console.error('Error loading blogs:', error);
-      // Load mock data for demo
       setBlogs([]);
     } finally {
       setLoading(false);
@@ -84,13 +84,13 @@ const BlogComponent = ({ apiBase, authToken }) => {
         const newBlog = await response.json();
         setBlogs([newBlog, ...blogs]);
         resetForm();
-        alert('Blog created successfully!');
+        toast.success('Blog created successfully!');
       } else {
-        alert('Failed to create blog');
+        toast.error('Failed to create blog');
       }
     } catch (error) {
       console.error('Error creating blog:', error);
-      // For demo, add to local state
+     
       const newBlog = {
         id: Date.now(),
         ...formData,
@@ -100,7 +100,7 @@ const BlogComponent = ({ apiBase, authToken }) => {
       };
       setBlogs([newBlog, ...blogs]);
       resetForm();
-      alert('Blog created successfully (demo mode)!');
+      
     }
   };
 
@@ -122,18 +122,17 @@ const BlogComponent = ({ apiBase, authToken }) => {
           blog._id === editingBlog._id ? { ...blog, ...blogData } : blog
         ));
         resetForm();
-        alert('Blog updated successfully!');
+        toast.success('Blog updated successfully!');
       } else {
-        alert('Failed to update blog');
+        toast.error('Failed to update blog');
       }
     } catch (error) {
-      console.error('Error updating blog:', error);
-      // For demo, update local state
+      console.error('Error updating blog:', error);     
       setBlogs(blogs.map(blog => 
         blog.id === editingBlog.id ? { ...blog, ...formData, tags: formData.tags.split(',').map(tag => tag.trim()) } : blog
       ));
       resetForm();
-      alert('Blog updated successfully (demo mode)!');
+      
     }
   };
 
@@ -148,11 +147,10 @@ const BlogComponent = ({ apiBase, authToken }) => {
       if (response.ok) {
         setBlogs(blogs.filter(blog => blog._id !== id));
       } else {
-        alert('Failed to delete blog');
+        toast.error('Failed to delete blog');
       }
     } catch (error) {
-      console.error('Error deleting blog:', error);
-      // For demo, remove from local state
+      console.error('Error deleting blog:', error);     
       setBlogs(blogs.filter(blog => blog.id !== id));
     }
   };
@@ -185,7 +183,6 @@ const BlogComponent = ({ apiBase, authToken }) => {
       }
     } catch (error) {
       console.error('Error updating blog status:', error);
-      // For demo, update local state
       setBlogs(blogs.map(blog => 
         blog._id === id ? { ...blog, status } : blog
       ));
@@ -217,13 +214,13 @@ const BlogComponent = ({ apiBase, authToken }) => {
           <button
             onClick={loadBlogs}
             disabled={loading}
-            className="text-blue-600 hover:text-blue-800 text-sm disabled:opacity-50"
+            className="text-blue-600 cursor-none hover:text-blue-800 text-sm disabled:opacity-50"
           >
             Refresh
           </button>
           <button
             onClick={() => setShowCreateForm(true)}
-            className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition duration-200 flex items-center"
+            className="bg-purple-600 cursor-none text-white px-4 py-2 rounded-md hover:bg-purple-700 transition duration-200 flex items-center"
           >
             <Plus size={16} className="mr-2" />
             New Blog
@@ -240,80 +237,80 @@ const BlogComponent = ({ apiBase, authToken }) => {
           
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                 Title *
               </label>
               <input
                 type="text"
                 value={formData.title}
                 onChange={(e) => handleFormChange('title', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full cursor-none px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 placeholder="Blog title"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                 Author *
               </label>
               <input
                 type="text"
                 value={formData.author}
                 onChange={(e) => handleFormChange('author', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full cursor-none px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 placeholder="Author name"
               />
             </div>
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
               Excerpt *
             </label>
             <textarea
               rows={2}
               value={formData.excerpt}
               onChange={(e) => handleFormChange('excerpt', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full cursor-none px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               placeholder="Brief description of the blog post"
             />
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
               Content *
             </label>
             <textarea
               rows={8}
               value={formData.content}
               onChange={(e) => handleFormChange('content', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full cursor-none px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               placeholder="Write your blog content here..."
             />
           </div>
 
           <div className="grid md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                 Tags
               </label>
               <input
                 type="text"
                 value={formData.tags}
                 onChange={(e) => handleFormChange('tags', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full cursor-none px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 placeholder="react, javascript, web"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                 Status
               </label>
               <select
                 value={formData.status}
                 onChange={(e) => handleFormChange('status', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full  px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 <option value="draft">Draft</option>
                 <option value="published">Published</option>
@@ -322,14 +319,14 @@ const BlogComponent = ({ apiBase, authToken }) => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block cursor-none text-sm font-medium text-gray-700 mb-1">
                 Featured Image URL
               </label>
               <input
                 type="url"
                 value={formData.featuredImage}
                 onChange={(e) => handleFormChange('featuredImage', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full cursor-none px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 placeholder="https://example.com/image.jpg"
               />
             </div>
@@ -338,13 +335,13 @@ const BlogComponent = ({ apiBase, authToken }) => {
           <div className="flex gap-4">
             <button
               onClick={editingBlog ? handleUpdateBlog : handleCreateBlog}
-              className="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 transition duration-200"
+              className="bg-purple-600 cursor-none text-white px-6 py-2 rounded-md hover:bg-purple-700 transition duration-200"
             >
               {editingBlog ? 'Update Blog' : 'Create Blog'}
             </button>
             <button
               onClick={resetForm}
-              className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 transition duration-200"
+              className="bg-gray-500 cursor-none text-white px-6 py-2 rounded-md hover:bg-gray-600 transition duration-200"
             >
               Cancel
             </button>
@@ -399,7 +396,7 @@ const BlogComponent = ({ apiBase, authToken }) => {
                   {blog.status === 'draft' && (
                     <button
                       onClick={() => updateBlogStatus(blog._id, 'published')}
-                      className="text-green-600 hover:text-green-800 text-sm"
+                      className="text-green-600 cursor-none hover:text-green-800 text-sm"
                     >
                       Publish
                     </button>
@@ -407,21 +404,21 @@ const BlogComponent = ({ apiBase, authToken }) => {
                   {blog.status === 'published' && (
                     <button
                       onClick={() => updateBlogStatus(blog._id, 'draft')}
-                      className="text-yellow-600 hover:text-yellow-800 text-sm"
+                      className="text-yellow-600 cursor-none hover:text-yellow-800 text-sm"
                     >
                       Unpublish
                     </button>
                   )}
                   <button
                     onClick={() => startEditing(blog)}
-                    className="text-blue-600 hover:text-blue-800 text-sm flex items-center"
+                    className="text-blue-600 cursor-none hover:text-blue-800 text-sm flex items-center"
                   >
                     <Edit size={14} className="mr-1" />
                     Edit
                   </button>
                   <button
                     onClick={() => deleteBlog(blog._id)}
-                    className="text-red-600 hover:text-red-800 text-sm"
+                    className="text-red-600 cursor-none hover:text-red-800 text-sm"
                   >
                     Delete
                   </button>

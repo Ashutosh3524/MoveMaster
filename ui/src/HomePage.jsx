@@ -55,8 +55,8 @@ const HomePage = () => {
                            
                             stiffness: 40,
                             damping: 25,
-                            delay: 0.5,
-                            duration: 0.8
+                            delay: 0.2,
+                            duration: 0.6
                         }}
                         className="text-5xl font-bold mb-6 ">Professional Packer & Movers</motion.h1>
                     <motion.p
@@ -66,8 +66,8 @@ const HomePage = () => {
                             
                             stiffness: 40,
                             damping: 25,
-                            delay: 0.8,
-                            duration: 1.2
+                            delay: 0.5,
+                            duration: 0.9
                         }}
                      className="text-xl py-6 mb-8">With years of experience and a dedicated team of professionals, we make home and office relocations smooth, efficient, and completely hassle-free — whether you're moving across the street or across the country.
 
@@ -79,20 +79,20 @@ const HomePage = () => {
                             
                             stiffness: 40,
                             damping: 25,
-                            delay: 1,
-                            duration: 1.5
+                            delay: 0.8,
+                            duration: 1.2
                         }}
                     className="flex flex-col sm:flex-row gap-4 py-4">
                         <button
                             onClick={() => navigate('/contact')}
-                            className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+                            className="bg-white text-blue-600 cursor-none px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
                         >
                            Get in Touch
 
                         </button>
                         <button
                             onClick={() => navigate('/services')}
-                            className="border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+                            className="border-2 border-white cursor-none px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
                         >
                             Our Services
                         </button>
@@ -156,7 +156,7 @@ const HomePage = () => {
                     <div className="text-center mt-8">
                         <button
                             onClick={() => navigate('/services')}
-                            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                            className="bg-blue-600 cursor-none text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                         >
                             View All Services
                         </button>

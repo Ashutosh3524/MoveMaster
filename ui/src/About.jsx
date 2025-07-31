@@ -14,8 +14,8 @@ const About = () => {
 
                         stiffness: 40,
                         damping: 25,
-                        delay: 0.5,
-                        duration: 1,
+                        delay: 0.2,
+                        duration: 0.8,
 
                     }}
                     className="text-center mb-12">
@@ -31,8 +31,8 @@ const About = () => {
 
                             stiffness: 40,
                             damping: 25,
-                            delay: 0.5,
-                            duration: 1,
+                            delay: 0.2,
+                            duration: 0.8,
 
                         }}
                     >
@@ -63,8 +63,8 @@ const About = () => {
 
                             stiffness: 40,
                             damping: 25,
-                            delay: 0.5,
-                            duration: 1,
+                            delay: 0.2,
+                            duration: 0.8,
 
                         }}
                         className=" h-96 rounded-lg flex items-center justify-center">
@@ -98,7 +98,7 @@ const About = () => {
                     <p className="text-gray-600 mb-6">Join thousands of satisfied customers who chose MoveMaster for their relocation needs.</p>
                     <button
                         onClick={() => navigate('/contact')}
-                        className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                        className="bg-blue-600 cursor-none text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                     >
                         Get in Touch
                     </button>

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
-
+import {  toast } from 'react-toastify';
 const Review = () => {
     const [reviews, setReviews] = useState([]);
 
@@ -38,10 +38,10 @@ const Review = () => {
 
             if (res.ok) {
                 setReviewForm({ name: '', rating: 5, comment: '' });
-                alert('Review submitted successfully!');
-                fetchReviews(); // Refresh the review list
+                toast.success('Review submitted successfully!');
+                fetchReviews(); 
             } else {
-                alert('Failed to submit review');
+                toast.error('Failed to submit review');
             }
         } catch (err) {
             console.error('Error submitting review:', err);
@@ -64,7 +64,7 @@ const Review = () => {
     });
     return (
 
-        <div className="py-16">
+        <div className="py-16 ">
             <div className="max-w-6xl mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: -80 }}
@@ -103,13 +103,13 @@ const Review = () => {
                                 placeholder="Your Name"
                                 value={reviewForm.name}
                                 onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })}
-                                className="border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="border rounded-lg px-4 cursor-none py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 required
                             />
                             <select
                                 value={reviewForm.rating}
                                 onChange={(e) => setReviewForm({ ...reviewForm, rating: parseInt(e.target.value) })}
-                                className="border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="border  rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value={5}>5 Stars - Excellent</option>
                                 <option value={4}>4 Stars - Very Good</option>
@@ -123,12 +123,12 @@ const Review = () => {
                             value={reviewForm.comment}
                             onChange={(e) => setReviewForm({ ...reviewForm, comment: e.target.value })}
                             rows={4}
-                            className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full cursor-none border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
                         />
                         <button
                             type="submit"
-                            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                            className="bg-blue-600 cursor-none text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                         >
                             Submit Review
                         </button>

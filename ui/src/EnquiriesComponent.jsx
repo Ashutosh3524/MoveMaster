@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Loader2 } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const EnquiriesComponent = ({ apiBase, authToken }) => {
   const [enquiries, setEnquiries] = useState([]);
@@ -18,31 +19,7 @@ const EnquiriesComponent = ({ apiBase, authToken }) => {
     return fetch(url, { ...options, headers });
   };
 
-  // const loadEnquiries = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetchWithAuth(`${apiBase}/contact/fetch`);
-  //     const data = await response.json();
-  //     setEnquiries(data);
-  //   } catch (error) {
-  //     console.error('Error loading enquiries:', error);
-  //     // Load mock data for demo
-  //     const formatted = data.map((entry) => ({
-  //       _id: entry._id,
-  //       name: entry.name,
-  //       email: entry.email,
-  //       message: entry.message,
-  //       phone: entry.phone,
-  //       subject: entry.subject,
-  //       status: entry.status,
-  //       timestamp: entry.timestamp
-  //     }));
-  //     setEnquiries(formatted);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
+  
   const loadEnquiries = async () => {
     setLoading(true);
     try {
@@ -50,7 +27,6 @@ const EnquiriesComponent = ({ apiBase, authToken }) => {
       const result = await response.json();
       const data = result.data;
 
-      // Format and map if necessary
       const formatted = data
         .map((entry) => ({
           id: entry._id, 
@@ -67,7 +43,7 @@ const EnquiriesComponent = ({ apiBase, authToken }) => {
       setEnquiries(formatted);
     } catch (error) {
       console.error('Error loading enquiries:', error);
-      setEnquiries([]); // fallback to empty
+      setEnquiries([]); 
     } finally {
       setLoading(false);
     }
@@ -83,11 +59,11 @@ const EnquiriesComponent = ({ apiBase, authToken }) => {
       if (response.ok) {
         setEnquiries(enquiries.filter(e => e.id !== id));
       } else {
-        alert('Failed to delete enquiry');
+        toast.error('Failed to delete enquiry');
       }
     } catch (error) {
       console.error('Error deleting enquiry:', error);
-      // For demo, remove from local state
+     
       setEnquiries(enquiries.filter(e => e.id !== id));
     }
   };
@@ -106,7 +82,6 @@ const EnquiriesComponent = ({ apiBase, authToken }) => {
       }
     } catch (error) {
       console.error('Error marking as read:', error);
-      // For demo, update local state
       setEnquiries(enquiries.map(e =>
         e.id === id ? { ...e, status: 'read' } : e
       ));
@@ -128,7 +103,7 @@ const EnquiriesComponent = ({ apiBase, authToken }) => {
         <button
           onClick={loadEnquiries}
           disabled={loading}
-          className="text-blue-600 hover:text-blue-800 text-sm disabled:opacity-50"
+          className="text-blue-600 cursor-none hover:text-blue-800 text-sm disabled:opacity-50"
         >
           Refresh
         </button>
@@ -154,14 +129,14 @@ const EnquiriesComponent = ({ apiBase, authToken }) => {
                   {enquiry.status === 'new' && (
                     <button
                       onClick={() => markAsRead(enquiry.id)}
-                      className="text-blue-600 hover:text-blue-800 text-sm"
+                      className="text-blue-600 cursor-none hover:text-blue-800 text-sm"
                     >
                       Mark Read
                     </button>
                   )}
                   <button
                     onClick={() => deleteEnquiry(enquiry.id)}
-                    className="text-red-600 hover:text-red-800 text-sm"
+                    className="text-red-600 cursor-none hover:text-red-800 text-sm"
                   >
                     Delete
                   </button>

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Truck, Shield, Clock, Star, Phone, Mail, MapPin, Users, Award, Target, ChevronRight, CheckCircle, Home } from 'lucide-react';
+import { Menu, X, Truck, Phone, Mail, MapPin, } from 'lucide-react';
 import AppRoutes from './AppRoutes';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomCursor from './customCursor';
+
 
 
 
@@ -22,7 +26,7 @@ const App = () => {
     { id: '/blog', label: 'Blog' },
     { id: '/reviews', label: 'Reviews' },
     { id: '/contact', label: 'Contact' },
-     {id: '/admin', label: 'Admin'}
+    { id: '/admin', label: 'Admin' }
   ];
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
@@ -59,7 +63,7 @@ const App = () => {
             <nav className="hidden md:flex space-x-8">
               {navigation.map((item, index) => (
                 <MotionLink
-                  
+
                   initial={isFirstLoad ? { opacity: 0, y: -20 } : false}
                   animate={isFirstLoad ? { opacity: 1, y: 0 } : false}
                   transition={{
@@ -67,10 +71,11 @@ const App = () => {
                     stiffness: 100,
                     damping: 20,
                     delay: 0.7 + index * 0.2,
+                    
                   }}
                   key={item.id}
                   to={item.id}
-                  className={`relative group px-3 py-2 rounded-md text-sm font-medium ${location.pathname === item.id ? 'text-blue-600' : 'text-gray-700'
+                  className={`relative group px-3 py-2 cursor-none rounded-md text-sm font-medium ${location.pathname === item.id ? 'text-blue-600' : 'text-gray-700'
                     } hover:text-blue-600`}
                 >
                   {item.label}
@@ -133,10 +138,10 @@ const App = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <button onClick={() => navigate('/home')} className="block text-gray-300 hover:text-white transition-colors">Home</button>
-                <button onClick={() => navigate('/about')} className="block text-gray-300 hover:text-white transition-colors">About Us</button>
-                <button onClick={() => navigate('/services')} className="block text-gray-300 hover:text-white transition-colors">Services</button>
-                <button onClick={() => navigate('/contact')} className="block text-gray-300 hover:text-white transition-colors">Contact</button>
+                <button onClick={() => navigate('/')} className="block text-gray-300 cursor-none  hover:text-white transition-colors">Home</button>
+                <button onClick={() => navigate('/about')} className="block text-gray-300 cursor-none hover:text-white transition-colors">About Us</button>
+                <button onClick={() => navigate('/services')} className="block text-gray-300 cursor-none hover:text-white transition-colors">Services</button>
+                <button onClick={() => navigate('/contact')} className="block text-gray-300 cursor-none hover:text-white transition-colors">Contact</button>
               </div>
             </div>
             <div>
@@ -171,6 +176,20 @@ const App = () => {
           </div>
         </div>
       </footer>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <CustomCursor />
+
     </div>
 
   );

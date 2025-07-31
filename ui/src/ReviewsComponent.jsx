@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Loader2 } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const ReviewsComponent = ({ apiBase, authToken }) => {
   const [reviews, setReviews] = useState([]);
@@ -26,7 +27,6 @@ const ReviewsComponent = ({ apiBase, authToken }) => {
       setReviews(data);
     } catch (error) {
       console.error('Error loading reviews:', error);
-      // Load mock data for demo
       setReviews([]);
     } finally {
       setLoading(false);
@@ -42,11 +42,10 @@ const ReviewsComponent = ({ apiBase, authToken }) => {
       if (response.ok) {
         setReviews(reviews.filter(r => r._id !== id));
       } else {
-        alert('Failed to delete review');
+        toast.error('Failed to delete review');
       }
     } catch (error) {
       console.error('Error deleting review:', error);
-      // For demo, remove from local state
       setReviews(reviews.filter(r => r._id !== id));
     }
   };
@@ -88,7 +87,7 @@ const ReviewsComponent = ({ apiBase, authToken }) => {
                   <span className="text-sm text-gray-500">{review.date}</span>
                   <button
                     onClick={() => deleteReview(review._id)}
-                    className="text-red-600 hover:text-red-800 text-sm"
+                    className="text-red-600 cursor-none hover:text-red-800 text-sm"
                   >
                     Delete
                   </button>

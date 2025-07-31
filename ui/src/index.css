@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+body{
+    cursor: none;
+}
+select  {
+  cursor: none !important; 
+}

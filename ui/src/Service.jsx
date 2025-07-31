@@ -86,7 +86,7 @@ const Service = () => {
                         <p className="text-xl mb-6">We offer tailored services to meet your specific moving requirements.</p>
                         <button
                             onClick={() => navigate('/contact')}
-                            className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                            className="bg-white cursor-none text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                         >
                             Contact Us Today
                         </button>
