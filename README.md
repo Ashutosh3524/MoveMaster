@@ -19,7 +19,8 @@ MoveMaster is a full-stack **MERN** (MongoDB, Express, React, Node.js) applicati
 ---
 
 ### 🔐 Admin Panel
-<img src="./assets/DB4.png" width=800" />
+
+<img src="./assets/DB4.png" alt="Admin" width="800" />
 
 Accessible only via:
 - **Email:** `admin@gmail.com`  
@@ -65,6 +66,7 @@ The project uses **MongoDB** as the primary database. It consists of the followi
 ### 🗃️ Screenshot of Collections in MongoDB Compass
 <img src="./assets/DB1.png" width="800" /> 
 <img src="./assets/DB2.png" width=800" />
+
 
 ## 🚀 Tech Stack
 
