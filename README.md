@@ -14,8 +14,8 @@ MoveMaster is a full-stack **MERN** (MongoDB, Express, React, Node.js) applicati
 - Users can submit enquiries and reviews through the contact and review forms.
 
 ### 🏠 WebPage Screenshots
-<img src="./assets/HomePage.png" alt="Homepage" width="300" /> <img src="./assets/About.png" alt="About" width="300" /> 
-<img src="./assets/Contact.png" alt="Contact" width="300" /> <img src="./assets/Blogs.png" alt="Blogs" width="300" /> 
+<img src="./assets/HomePage.png" alt="Homepage" width="400" /> <img src="./assets/About.png" alt="About" width="400" /> 
+<img src="./assets/Contact.png" alt="Contact" width="400" /> <img src="./assets/Blogs.png" alt="Blogs" width="400" /> 
 ---
 
 ### 🔐 Admin Panel
