@@ -1,17 +1,17 @@
 # MoveMaster
 
-MoveMaster is a full-stack **MERN** (MongoDB, Express, React, Node.js) application designed for moving services, featuring a sleek and dynamic user experience with **Framer Motion**, **GSAP animations**, and **React Toastify** for clean notifications.
+MoveMaster is a full-stack MERN (MongoDB, Express, React, Node.js) application designed for moving services, featuring a sleek and dynamic user experience with smooth animations and interactive notifications for a clean and engaging interface.
 
 ---
 
 ## ✨ Features
 
 ### 🔹 Public Features
-- Fully **responsive** and mobile-friendly design.
-- Smooth animations using **Framer Motion** and **GSAP**.
-- Toast notifications via **React Toastify**.
-- Pages include: Home, About Us, Services, Blog, Reviews, and Contact.
-- Users can submit enquiries and reviews through the contact and review forms.
+- Fully responsive and mobile-friendly design for optimal viewing on all devices.
+- Smooth and visually appealing animations for enhanced user engagement.
+- Interactive notifications to provide instant feedback on user actions.
+- Includes pages such as: Home, About Us, Services, Blog, Reviews, and Contact.
+- Allows users to submit enquiries and reviews through dedicated forms.
 
 ### 🏠 WebPage Screenshots
 <img src="./assets/HomePage.png" alt="Homepage" width="400" /> <img src="./assets/About.png" alt="About" width="400" /> 
