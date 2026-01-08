@@ -77,4 +77,4 @@ The project uses **MongoDB** as the primary database. It consists of the followi
 
 ### 🎥 Demo Video
 
-[Click here to watch the video on Google Drive](https://drive.google.com/drive/folders/1fi50aZpW0g33xfuVQMqkyW9aiNlV-A5l?usp=sharing)
+[Move Master](https://move-master-delta.vercel.app/)
