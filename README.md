@@ -1,4 +1,5 @@
-# MoveMaster
+# MoveMaster 
+https://move-master-delta.vercel.app/
 
 MoveMaster is a full-stack MERN (MongoDB, Express, React, Node.js) application designed for moving services, featuring a sleek and dynamic user experience with smooth animations and interactive notifications for a clean and engaging interface.
 
@@ -75,6 +76,6 @@ The project uses **MongoDB** as the primary database. It consists of the followi
 - **Database:** MongoDB
 - **Authentication:** Basic credential check (can be extended with JWT)
 
-### 🎥 Demo Video
 
-[Move Master](https://move-master-delta.vercel.app/)
+
+
