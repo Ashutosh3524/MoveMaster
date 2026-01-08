@@ -5,7 +5,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CustomCursor from './customCursor';
+import CustomCursor from './CustomCursor';
 
 
 
